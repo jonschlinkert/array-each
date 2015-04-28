@@ -34,10 +34,10 @@
 module.exports = function each(arr, cb, thisArg) {
   if (arr == null) return;
 
-  var len = arr.length, i = 0;
+  var len = arr.length, i = -1;
 
   while (len--) {
-    var ele = arr[i++];
+    var ele = arr[++i];
     if (cb.call(thisArg, ele, i, arr) === false) {
       break;
     }
