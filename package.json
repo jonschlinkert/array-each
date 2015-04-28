@@ -1,7 +1,7 @@
 {
   "name": "array-each",
   "description": "Loop over each item in an array and call the given function on every element.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/array-each",
   "author": {
     "name": "Jon Schlinkert",
