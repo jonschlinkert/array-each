@@ -1,46 +1,49 @@
 /*!
  * array-each <https://github.com/jonschlinkert/array-each>
  *
- * Copyright (c) 2015 Jon Schlinkert.
- * Licensed under the MIT license.
+ * Copyright (c) 2015, 2017, Jon Schlinkert.
+ * Released under the MIT License.
  */
 
 'use strict';
 
-/* deps:mocha */
+require('mocha');
 var assert = require('assert');
-var should = require('should');
 var each = require('./');
 
-describe('each', function () {
-  it('should return undefined when the first arg is null', function () {
-    assert(each() === undefined);
+describe('each', function() {
+  it('should return when the first arg is null', function() {
+    var arr;
+    each('', function(ele) {
+      arr = [ele];
+    });
+    assert.equal(arr, undefined);
   });
 
-  it('should loop over each item in an array and call the given function on every element:', function () {
+  it('should loop over each item in an array and call the given function on every element:', function() {
     var res = [];
-    each(['a', 'b', 'c'], function (ele) {
+    each(['a', 'b', 'c'], function(ele) {
       res.push(ele + ele);
     });
-    res.should.eql(['aa', 'bb', 'cc']);
+    assert.deepEqual(res, ['aa', 'bb', 'cc']);
   });
 
-  it('should "break" when `false` is returned:', function () {
+  it('should "break" when `false` is returned:', function() {
     var res = [];
-    each(['a', 'b', 'c'], function (ele, i) {
+    each(['a', 'b', 'c'], function(ele, i) {
       if (ele === 'b') {
         return false;
       }
       res.push(ele + ele);
     });
-    res.should.eql(['aa']);
+    assert.deepEqual(res, ['aa']);
   });
 
-  it('should expose the index as the second parameter:', function () {
+  it('should expose the index as the second parameter:', function() {
     var res = [];
-    each(['a', 'b', 'c'], function (ele, i) {
+    each(['a', 'b', 'c'], function(ele, i) {
       res.push(i);
     });
-    res.should.eql([0, 1, 2]);
+    assert.deepEqual(res, [0, 1, 2]);
   });
 });
